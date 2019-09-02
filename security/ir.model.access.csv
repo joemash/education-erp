@@ -1,0 +1,11 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_education_student_class,access.education.student.class,wingu_school.model_education_student_class,wingu_school.group_education_teacher,1,1,1,0
+access_education_teacher,access.education.teacher,wingu_school.model_education_teacher,wingu_school.group_education_teacher,1,1,1,0
+access_education_student,access.education.student,wingu_school.model_education_student,wingu_school.group_education_teacher,1,1,1,0
+access_education_subject,access.education.subject,wingu_school.model_education_subject,wingu_school.group_education_teacher,1,1,1,0
+access_education_attendance,access.education.attendance,wingu_school.model_education_attendance,wingu_school.group_education_teacher,1,1,1,0
+access_education_attendance_lines,access.education.attendance.lines,wingu_school.model_education_attendance_lines,wingu_school.group_education_teacher,1,1,1,0
+access_education_student_result,access.education.student.result,wingu_school.model_education_student_result,wingu_school.group_education_teacher,1,1,1,0
+access_education_student_result_lines,access.education.student.result.lines,wingu_school.model_education_student_result_lines,wingu_school.group_education_teacher,1,1,1,0
+access_education_promote_student,access.education.promote.student,wingu_school.model_education_promote_student,wingu_school.group_education_teacher,1,1,1,0
+access_education_promote_student_line,access.education.promote.student.line,wingu_school.model_education_promote_student_line,wingu_school.group_education_teacher,1,1,1,0

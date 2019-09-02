@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    
+    <record id="view_student_result_tree" model="ir.ui.view">
+        <field name="name">education.student.result.tree</field> 
+        <field name="model">education.student.result</field>
+        <field name="arch" type="xml">
+            <tree string="Student Results">
+                <field name="student"/>
+                <field name="date"/>
+                <field name="term"/>
+                <field name="class_id" />
+            </tree>
+        </field>
+    </record>
+
+
+    <record id="view_student_result_form" model="ir.ui.view"> 
+        <field name="name">education.student.result.form</field>
+        <field name="model">education.student.result</field>
+        <field name="arch" type="xml">
+            <form string="Student Results">
+                <sheet> 
+                   <group col="4" colspan="4">
+                    <field name="student"/>
+                     <field name="date"/>
+                     <field name="term"/>
+                     <field name="class_id" />
+                   </group>
+                   <notebook>
+                     <page string="Add Results">
+                       <field name="subject_line">
+						 <tree editable="bottom">
+							<field name="subject"/>
+                            <field name="mark_scored"/>
+						 </tree>
+                         <form>
+							<group>
+							  <field name="subject"/>
+                              <field name="mark_scored"/>
+							</group>
+					 	 </form>
+					   </field>
+                    <group class="oe_subtotal_footer oe_right">
+                        <field name="total_mark_scored" sum="Scored Total"/>
+                    </group>
+                    <div class="oe_clear"/>
+                    </page>
+                   </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="action_student_results" model="ir.actions.act_window">
+        <field name="name">Grading</field>
+        <field name="res_model">education.student.result</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+          <p class="oe_view_nocontent_create">
+            Create Student Grades
+          </p>    
+        </field>
+    </record>
+
+</odoo>

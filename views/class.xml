@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_education_class_tree" model="ir.ui.view">
+        <field name="name">education.student.class.tree</field>
+        <field name="model">education.student.class</field>
+        <field name="arch" type="xml">
+            <tree string="Student Class">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_education_class_form" model="ir.ui.view">
+        <field name="name">education.student.class.form</field>
+        <field name="model">education.student.class</field>
+        <field name="arch" type="xml">
+            <form string="Student Class">
+            <sheet string="Class">
+                    <div class="oe_button_box" name="button_box">
+                        <button name="view_students" type="object" widget="statinfo"
+                                class="oe_stat_button" icon="fa-user" attrs="{'invisible': [('student_count', '=', 0)]}">
+                            <field name="student_count" widget="statinfo" string="Students"/>
+                        </button>
+                    </div>
+                <group>
+                    <field name="name"/>
+                </group>
+              </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_education_class" model="ir.actions.act_window">
+        <field name="name">Student Class</field>
+        <field name="res_model">education.student.class</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Create the your first class here.
+            </p>
+        </field>
+    </record>
+
+</odoo>

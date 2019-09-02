@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        
+        <!--=============== Student Promotion tree view==================-->
+        <record id="view_student_tree" model="ir.ui.view">
+            <field name="name">view.student.tree</field>
+            <field name="model">education.promote.student</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <tree string="Student Tree">
+                    <field name="class_id"/>
+                    <field name="promote_to_class"/>
+                    <field name="student_line"/>
+                </tree>
+            </field>
+        </record>
+        
+        <!--=============== Student Promotion search view==================-->
+        <record id="view_student_promotion_search" model="ir.ui.view">
+            <field name="name">view.student.promotion.search</field>
+            <field name="model">education.promote.student</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <search string="Student Promotion search view">
+                    <field name="class_id"/>
+                    <field name="promote_to_class"/>
+                </search>
+            </field>
+        </record>
+      
+        
+        <!--=============== Inherited Class form view==================-->
+        <record id="inherit_view_class_form_view" model="ir.ui.view">
+            <field name="name">inherit.view.course.form.view</field>
+            <field name="model">education.student.class</field>
+            <field name="inherit_id" ref="view_education_class_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="/form/sheet/group/field[@name='name']" position="after">
+                    <field name="is_last_class"/>
+                    <field name="next_class" domain="[('id', '!=', id)]" attrs="{'invisible' : [('is_last_class','=',True)]}"/>
+                </xpath>
+            </field>
+        </record>
+        
+        
+        <!--=============== Student Promotion form view==================-->
+        <record id="view_promotion_form" model="ir.ui.view">
+            <field name="name">view.promotion.form</field>
+            <field name="model">education.promote.student</field>
+            <field name="arch" type="xml">
+                <form string="Student Promotion">
+                    <header>
+                        <!-- <field name="state" widget="statusbar"/> -->
+                    </header>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="class_id" required="1" attrs="{'readonly':[('student_list','=',True)]}"/>
+                               
+                            </group>
+                            <group>
+                                <field name="promote_to_class" required="1" attrs="{'readonly':[('student_list','=',True)]}"/>
+                            </group>
+                            <field name="student_list" invisible="1"/>
+                        </group>
+                        <group>
+                            <group>
+                                <button name="show_student_list" string="Show Student List" type="object"
+                                         class="oe_highlight"/>
+                                <button name="student_promotion" string="Promote" type="object"
+                                        class="oe_highlight" confirm="Are you sure to promote these students?"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Student Promotion">
+                                <field name="student_line">
+                                    <tree string="Students" editable="bottom">
+                                        <field name="student_id" readonly="1"/>
+                                        <field name="current_academic_class" readonly="1"/>
+                                        <field name="new_acad_class" readonly="1"/>
+                                        <field name="state"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        
+        <!--============== Action for Student Promotion =================-->
+        <record id="action_student_promotion" model="ir.actions.act_window">
+            <field name="name">Student Promotion</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">education.promote.student</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+    </data>
+</odoo>

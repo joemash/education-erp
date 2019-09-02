@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    
+    <record id="view_student_attendance_tree" model="ir.ui.view">
+        <field name="name">student.attendance.tree</field> 
+        <field name="model">education.attendance</field>
+        <field name="arch" type="xml">
+            <tree string="Attendance">
+                <field name="date"/>
+                <field name="term"/>
+                <field name="class_id" />
+            </tree>
+        </field>
+    </record>
+
+
+    <record id="view_student_attendance_form" model="ir.ui.view"> 
+        <field name="name">student.attendance.form</field>
+        <field name="model">education.attendance</field>
+        <field name="arch" type="xml">
+            <form string="Student">
+                <sheet> 
+                   <group col="4" colspan="4">
+                     <field name="date"/>
+                     <field name="term"/>
+                     <field name="class_id" />
+                   </group>
+                   <notebook>
+                     <page string="Attendance">
+                       <field name="attendance_id">
+						 <tree editable="bottom">
+							<field name="student"/>
+							<field name="status"/>
+						 </tree>
+                         <form>
+							<group>
+							  <field name="student"/>
+							  <field name="status"/>
+							</group>
+						 </form>
+						</field>  
+                    </page>
+                   </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="action_attendance" model="ir.actions.act_window">
+        <field name="name">Attendance</field>
+        <field name="res_model">education.attendance</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+          <p class="oe_view_nocontent_create">
+            Create Student Attendance
+          </p>    
+        </field>
+    </record>
+
+</odoo>

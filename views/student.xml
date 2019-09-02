@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record  id="view_education_student_tree" model="ir.ui.view">
+        <field name="name">education.student.tree</field>
+        <field name="model">education.student</field>
+        <field name="arch" type="xml">
+            <tree string="Student">
+                <field name="admin_no"/>
+                <field name="name"/>
+                <field name="last_name"/>
+                <field name="gender"/>
+                 <field name="class_id"/>
+                <field name="active"/>
+                
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_education_student_form" model="ir.ui.view">
+        <field name="name">education.student.form</field>
+        <field name="model">education.student</field>
+        <field name="arch" type="xml">
+            <form string="Student">
+                <sheet>
+                    <field name="image" widget="image" class="oe_left oe_avatar" />
+                    <div class="oe_title">
+                        <h1>
+                            <table>
+                                <tr>
+                                    <td style="padding-right:10px;"><field name="name" placeholder="First Name" required="1"/></td>
+                                    <td style="padding-right:10px;"><field name="middle_name" placeholder="Middle Name" /></td>
+                                    <td style="padding-right:10px;"><field name="last_name" placeholder="Last Name" required="1"/></td>
+                                </tr>
+                            </table>
+                        </h1>
+                    </div>
+                    <notebook>
+                        <page string="Student Details">
+                            <separator string="Basic Details"/>
+                             <group>
+                                <group>
+                                    <field name="gender"/>
+                                    <field name="date_of_birth"/>
+                                    <field name="nationality"/>
+                                </group>
+                                <group>
+                                    <field name="class_id"/>
+                                    <field name="admin_no"/>
+                                    <field name="active"/>
+                                </group>
+                            </group>
+                            <separator string="Contact Details"/>
+                            <group>
+                              <group>
+                                    <field name="phone"/>
+                                    <field name="email"/>
+                                </group> 
+                            </group>
+                        </page>
+                        <page string="Guardian Information">
+                            <group>
+                                <group>
+                                    <field name="guardian_relation"/>
+                                </group>
+                                <group>
+                                     <field name="email"/>
+                                    <field name="mobile" required="1"/>
+                                </group>
+                            </group>
+                            <group>
+                                <separator string="Address"/>
+                            </group>
+                        </page>
+                    </notebook>
+
+                </sheet>
+
+            </form>
+        </field>
+    </record>
+
+    <!-- <record model="ir.ui.view" id="student_search" >
+        <field name="name">Students</field>
+        <field name="model">education.student</field>
+        <field name="arch" type="xml">
+            <search string="Search Students">
+                <field name="class_id"/>
+                <field name="gender"/>
+                <field name="religion_id"/>
+                <field name="caste_id"/>
+                <field name="mother_tongue"/>
+                <group expand='0' string='Group by...'>
+                    <filter string='Class' icon="fa-user" domain="[]" context="{'group_by' : 'class_id'}"/>
+                    <filter string='Gender' icon="fa-genderless" domain="[]" context="{'group_by' : 'gender'}"/>
+                    <filter string='Religion' icon="fa-pencil-square-o" domain="[]" context="{'group_by' : 'religion_id'}"/>
+                    <filter string='Caste' icon="fa-pencil-square-o" domain="[]" context="{'group_by' : 'caste_id'}"/>
+                    <filter string='Mother Tongue' icon="fa fa-language" domain="[]" context="{'group_by' : 'mother_tongue'}"/>
+               </group>
+           </search>
+        </field>
+    </record> -->
+
+    <record id="action_student" model="ir.actions.act_window">
+        <field name="name">Student</field>
+        <field name="res_model">education.student</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <!-- <field name="search_view_id" ref="student_search"/> -->
+        <!-- <field name="context">{'create': False}</field> -->
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Create student here.
+            </p>
+        </field>
+    </record>
+
+</odoo>
