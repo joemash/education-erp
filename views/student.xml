@@ -50,7 +50,7 @@
                                     <field name="active"/>
                                 </group>
                             </group>
-                            <separator string="Contact Details"/>
+                            <separator string="Student Contact Details"/>
                             <group>
                               <group>
                                     <field name="phone"/>
@@ -64,7 +64,7 @@
                                     <field name="guardian_relation"/>
                                 </group>
                                 <group>
-                                     <field name="email"/>
+                                     <field name="email" required="1"/>
                                     <field name="mobile" required="1"/>
                                 </group>
                             </group>
