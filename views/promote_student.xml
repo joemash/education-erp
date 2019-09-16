@@ -24,7 +24,6 @@
             <field name="arch" type="xml">
                 <search string="Student Promotion search view">
                     <field name="class_id"/>
-                    <field name="promote_to_class"/>
                 </search>
             </field>
         </record>
@@ -96,6 +95,7 @@
             <field name="res_model">education.promote.student</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="view_student_promotion_search"/>
         </record>
     </data>
 </odoo>

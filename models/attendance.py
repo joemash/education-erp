@@ -26,7 +26,11 @@ class StudentAttendance(models.Model):
         string='Attendance_ids'
     )
 
-    #TODO on change of class populate the respective student in lines
+    # TODO: On change of class_id populate respective students
+    # @api.onchange('class_id')
+    # def onchange_class_id(self):
+    #     for line in self.attendance_id:
+    #         line.student = self.env['education.student'].search([('class_id', '=', self.class_id)])
 
 
 class StudentAttendanceLine(models.Model):

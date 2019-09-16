@@ -13,6 +13,25 @@
         </field>
     </record>
 
+       <!--=============== Student Register search view==================-->
+    <record id="view_student_attendance_search" model="ir.ui.view">
+        <field name="name">view.student.attendace.search</field>
+        <field name="model">education.student</field>
+        <field name="arch" type="xml">
+            <search string="Student Search">
+                <field name="last_name"/>
+                <field name="admin_no"/>
+                <filter string="Male" name="male" domain="[('gender','=','male')]"
+                   help="Students with gender as Male"/>
+                <filter string="Female" name="female" domain="[('gender','=','female')]"
+                   help="Students with gender as Female"/>
+                <group expand="1" string="Group By">
+                   <filter string="Class" name="class_id" context="{'group_by':'class_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
 
     <record id="view_student_attendance_form" model="ir.ui.view"> 
         <field name="name">student.attendance.form</field>

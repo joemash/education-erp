@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+   <data>
 
     <record  id="view_education_student_tree" model="ir.ui.view">
         <field name="name">education.student.tree</field>
@@ -14,6 +15,25 @@
                 <field name="active"/>
                 
             </tree>
+        </field>
+    </record>
+
+    <!--=============== Student Register search view==================-->
+    <record id="view_student_register_search" model="ir.ui.view">
+        <field name="name">view.student.register.search</field>
+        <field name="model">education.student</field>
+        <field name="arch" type="xml">
+            <search string="Student Search">
+                <field name="last_name"/>
+                <field name="admin_no"/>
+                <filter string="Male" name="male" domain="[('gender','=','male')]"
+                   help="Students with gender as Male"/>
+                <filter string="Female" name="female" domain="[('gender','=','female')]"
+                   help="Students with gender as Female"/>
+                <group expand="1" string="Group By">
+                   <filter string="Class" name="class_id" context="{'group_by':'class_id'}"/>
+                </group>
+            </search>
         </field>
     </record>
 
@@ -80,34 +100,13 @@
         </field>
     </record>
 
-    <!-- <record model="ir.ui.view" id="student_search" >
-        <field name="name">Students</field>
-        <field name="model">education.student</field>
-        <field name="arch" type="xml">
-            <search string="Search Students">
-                <field name="class_id"/>
-                <field name="gender"/>
-                <field name="religion_id"/>
-                <field name="caste_id"/>
-                <field name="mother_tongue"/>
-                <group expand='0' string='Group by...'>
-                    <filter string='Class' icon="fa-user" domain="[]" context="{'group_by' : 'class_id'}"/>
-                    <filter string='Gender' icon="fa-genderless" domain="[]" context="{'group_by' : 'gender'}"/>
-                    <filter string='Religion' icon="fa-pencil-square-o" domain="[]" context="{'group_by' : 'religion_id'}"/>
-                    <filter string='Caste' icon="fa-pencil-square-o" domain="[]" context="{'group_by' : 'caste_id'}"/>
-                    <filter string='Mother Tongue' icon="fa fa-language" domain="[]" context="{'group_by' : 'mother_tongue'}"/>
-               </group>
-           </search>
-        </field>
-    </record> -->
-
     <record id="action_student" model="ir.actions.act_window">
         <field name="name">Student</field>
         <field name="res_model">education.student</field>
         <field name="type">ir.actions.act_window</field>
         <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
-        <!-- <field name="search_view_id" ref="student_search"/> -->
+        <field name="search_view_id" ref="view_student_register_search"/>
         <!-- <field name="context">{'create': False}</field> -->
         <field name="help" type="html">
             <p class="oe_view_nocontent_create">
@@ -115,5 +114,5 @@
             </p>
         </field>
     </record>
-
+    </data>
 </odoo>

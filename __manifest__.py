@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 ###################################################################################
-#    A part of Educational ERP Project <https://www.winguerp.co.ke>
+#    A part of Elimu ERP Project <https://www.winguerp.co.ke>
 #
 #    WinguInfoTech Solutions.
 #    Copyright (C) 2019 (<https://www.cybrosys.com>).
@@ -20,10 +20,10 @@
 #
 ###################################################################################
 {
-    'name': 'Educational ERP Core',
+    'name': 'Elimu ERP Core',
     'version': '12.0.1.0.1',
-    'summary': """Core Module of Educational ERP""",
-    'description': 'Core Module of Educational ERP',
+    'summary': """Core Module of Elimu ERP""",
+    'description': 'Core Module of Elimu ERP',
     'category': 'Educational',
     'author': 'WinguInfoTech Solutions',
     'company': 'WinguInfoTech Solutions',

@@ -28,7 +28,6 @@ class PromoteStudent(models.Model):
     def create(self, vals):
         class_obj = self.env['education.student.class']
         class_brw = class_obj.browse(vals['class_id'])
-
         if 'class_id' in vals and 'promote_to_class' in vals:
             if vals['class_id'] and vals['promote_to_class']:
                 if class_brw.is_last_class:
@@ -44,7 +43,6 @@ class PromoteStudent(models.Model):
     @api.multi
     def write(self, vals):
         class_obj = self.env['education.student.class']
-
         if 'class_id' in vals or 'promote_to_class' in vals:
             if 'class_id' not in vals:  
                 vals['class_id']=self.class_id.id
@@ -64,36 +62,24 @@ class PromoteStudent(models.Model):
     @api.multi
     def show_student_list(self):
         student_obj = self.env['education.student']
-        promote_obj = self.env['education.promote.student.line']
-        self.student_list = False
-        student_data = student_obj.search([('promoted', '=', False),
-                                            ('class_id', '=', self.class_id.id)])
-        if student_data:
-            for student in student_data:
-                promote_student_rec = promote_obj.search([('student_id', '=', student.id)])
-                if not promote_student_rec:
-                    if not self.promote_to_class:
-                        lines = {
-                            'promote_student_id': self.ids[0],
-                            'student_id': student.id,
-                            'current_academic_class': student.class_id.id,
-                            'new_acad_class': self.promote_to_class.id,
-                            }
-                    elif self.promote_to_class:
-                        lines = {
-                            'promote_student_id': self.ids[0],
-                            'student_id': student.id,
-                            'current_academic_class': student.class_id.id,
-                            'new_acad_class': self.promote_to_class.id,
-                            }
-                    promote_obj.create(lines)
-                    self.student_list = True
-        if self.student_list != True:
+        student_promote_lines_obj = self.env['education.promote.student.line']
+        student_data = student_obj.search([('class_id', '=', self.class_id.id)])
+        if not student_data:
             raise except_orm(_('Warning!'), _("There are no students to promote."))
+        for student in student_data:
+            lines = {
+                'promote_student_id': self.ids[0],
+                'student_id': student.id,
+                'current_academic_class': student.class_id.id,
+                'new_acad_class': self.promote_to_class.id,
+            }
+            student_promote_lines_obj.create(lines)
 
 
     @api.multi
     def student_promotion(self):
+        if not self.promote_to_class:
+            raise except_orm(_('Warning!'), _("The next class is not defined."))
         for student in self.student_line:
             if student.state == 'draft':
                 student.student_id.promoted = True
@@ -115,12 +101,7 @@ class PromoteStudentLine(models.Model):
     @api.multi
     def unlink(self):
         for student in self:
-            if student.state == 'draft':
-                continue
-            elif student.state == 'promote':
-                student.student_id.promoted = False
-                continue
-            else:
+            if student.state == 'promote':
                 raise except_orm(_('Warning!'),_("You can not delete this record"))
         return super(PromoteStudentLine, self).unlink()
 

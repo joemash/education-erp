@@ -77,18 +77,15 @@
         </field>
     </record>
 
-    <!-- <record id="teacher_search" model="ir.ui.view">
+    <record id="teacher_search" model="ir.ui.view">
         <field name="name">teacher</field>
         <field name="model">education.teacher</field>
         <field name="arch" type="xml">
             <search string="Search Faculties">
-                <field name="gender"/>
-                <group expand='0' string='Group by...'>
-                    <filter string='Gender' icon="fa-genderless" domain="[]" context="{'group_by' : 'gender'}"/>
-               </group>
+                <field name="last_name"/>
            </search>
         </field>
-    </record> -->
+    </record>
 
     <record id="action_teacher" model="ir.actions.act_window">
         <field name="name">Teacher</field>
@@ -96,7 +93,7 @@
         <field name="type">ir.actions.act_window</field>
         <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
-        <!-- <field name="search_view_id" ref="teacher_search"/> -->
+        <field name="search_view_id" ref="teacher_search"/>
         <field name="help" type="html">
             <p class="oe_view_nocontent_create">
                 Create the your first teacher here.

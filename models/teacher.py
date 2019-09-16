@@ -28,28 +28,28 @@ class EducationTeacher(models.Model):
     _inherit = ['mail.thread']
     _description = 'Faculty Record'
 
-    @api.multi
-    def create_employee(self):
-        """Creating the employee for the faculty"""
-        for rec in self:
-            values = {
-                'name': rec.name + rec.last_name,
-                'gender': rec.gender,
-                'birthday': rec.date_of_birth,
-                'image': rec.image,
-                'work_phone': rec.phone,
-                'work_mobile': rec.mobile,
-                'work_email': rec.email,
-            }
-            emp_id = self.env['hr.employee'].create(values)
-            rec.employee_id = emp_id.id
+    # @api.multi
+    # def create_employee(self):
+    #     """Creating the employee for the faculty"""
+    #     for rec in self:
+    #         values = {
+    #             'name': rec.name + rec.last_name,
+    #             'gender': rec.gender,
+    #             'birthday': rec.date_of_birth,
+    #             'image': rec.image,
+    #             'work_phone': rec.phone,
+    #             'work_mobile': rec.mobile,
+    #             'work_email': rec.email,
+    #         }
+    #         emp_id = self.env['hr.employee'].create(values)
+    #         rec.employee_id = emp_id.id
 
     @api.model
     def create(self, vals):
         """Over riding the create method to assign
         the sequence for newly creating records"""
         vals['faculty_id'] = self.env['ir.sequence'].next_by_code('education.teacher')
-        res = super(EducationFaculty, self).create(vals)
+        res = super(EducationTeacher, self).create(vals)
         return res
 
     name = fields.Char(string='Name', required=True, help="Enter the first name")

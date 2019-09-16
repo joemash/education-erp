@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
    <!-- Main Menu-->
-   <menuitem id="menu_education_root" name="Education" sequence="2"/>
+   <menuitem id="menu_education_root" name="Elimu" sequence="2"/>
   
   <!-- Configuration Menu-->
    <menuitem id="menu_education_conf" name="Configuration" parent="menu_education_root" sequence="10"/>
