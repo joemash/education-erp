@@ -28,11 +28,11 @@ class EducationSubject(models.Model):
     _name = 'education.subject'
 
     name = fields.Char(string='Name', required=True, help="Name of the Subject")
-    code = fields.Char(string="Code", help="Enter the Subject Code")
+    code = fields.Char(string="Code", required=True,  help="Enter the Subject Code")
     description = fields.Text(string='Description')
 
     _sql_constraints = [
-        ('code', 'unique(code)', "Another Subject already exists with this code!"),
+        ('code', 'unique(code)', "Subject already exists!"),
     ]
 
 
@@ -42,4 +42,4 @@ class EducationSubject(models.Model):
         exists = self.search([('name', '=', vals['name'])])
         if exists:
             raise ValidationError(_('The subject already exists'))
-        return super(EducationStudentClass, self).create(vals)
+        return super(EducationSubject, self).create(vals)

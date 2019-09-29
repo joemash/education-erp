@@ -1,5 +1,5 @@
-from odoo import fields, api, models
-
+from odoo import fields, api, models, _
+from odoo.exceptions import except_orm
 
 class StudentAttendance(models.Model):
     _name = 'education.attendance'
@@ -26,11 +26,21 @@ class StudentAttendance(models.Model):
         string='Attendance_ids'
     )
 
-    # TODO: On change of class_id populate respective students
-    # @api.onchange('class_id')
-    # def onchange_class_id(self):
-    #     for line in self.attendance_id:
-    #         line.student = self.env['education.student'].search([('class_id', '=', self.class_id)])
+    #TODO: On change of class_id populate respective students
+    @api.onchange('class_id')
+    def onchange_class_id(self):
+        #res = super(StudentAttendance, self).onchange_class_id(self)
+        students = self.env['education.student'].search([('class_id', '=', self.class_id.id)])
+        #lines = []
+        # for line in self.attendance_id:
+        #     lines.append((0,0,{'student':line.})
+        #res['value']['attendance_id']=students
+        result = []
+        for line in self.attendance_id:
+             result.append((0,0, {'student': line.student.last_name})) 
+              #browse(vals['user_id'])
+        self.attendance_id.student = result
+
 
 
 class StudentAttendanceLine(models.Model):

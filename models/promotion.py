@@ -58,7 +58,8 @@ class PromoteStudent(models.Model):
                 # if class_obj.browse(vals['promote_to_class']).name != class_brw.next_class:
                 #     raise except_orm(_('Warning!'), _("Promote to class can not be equal to or lower than current class!!"))
         return super(PromoteStudent, self).write(vals)
-    
+
+
     @api.multi
     def show_student_list(self):
         student_obj = self.env['education.student']

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <report id="action_report_student_attendace_all"
+                string="Generate Student Attendance Report"
+                model="education.attendance"
+                report_type="qweb-pdf"
+                file="wingu_school.student_attendance_report"
+                name="wingu_school.student_attendance_report"
+                />
+    </data>
+</odoo>

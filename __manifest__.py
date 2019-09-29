@@ -41,8 +41,10 @@
         'views/student_result.xml',
         'views/promote_student.xml',
         'views/main_menu.xml',
-        'report/student_report_template.xml',
         'report/student_report_menu.xml',
+        'report/student_report_template.xml',
+        'report/student_attendance_menu.xml',
+        'report/student_attendance_report_template.xml',
     ],
     'demo': [
         'demo/data.xml',

@@ -1,9 +1,9 @@
 from odoo import models, api
 
 
-class StudentResultReport(models.AbstractModel):
-    _name = 'student_result_report'
-    _description = 'Student Result Report'
+class StudentAttendanceReport(models.AbstractModel):
+    _name = 'student_attendance_report'
+    _description = 'Student Attendance Report'
 
     @api.model
     def _get_report_values(self, docids, data=None):

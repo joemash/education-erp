@@ -55,7 +55,8 @@ class EducationStudent(models.Model):
     date_of_birth = fields.Date(string="Date Of birth", requird=True)
     guardian_relation = fields.Selection(
         [('father', 'Father'),('mother', 'Mother'), ('other', 'Other')],
-        required=True, string="Guardian")
+        required=True, string="Relationship")
+    guardian_name = fields.Char(string='Guardian Name')
     class_id = fields.Many2one('education.student.class', string="Class")
     admin_no = fields.Char(string="Admission Number")
     gender = fields.Selection([('male', 'Male'), ('female', 'Female'), ('other', 'Other')],

@@ -22,13 +22,6 @@
         <field name="model">education.teacher</field>
         <field name="arch" type="xml">
             <form string="teacher">
-                <header>
-                     <button name="create_employee" type="object" class="oe_highlight"
-                            string="Create Employee" groups="base.group_user"
-                            help="Click to create employee for this teacher"
-                            attrs="{'invisible': [('employee_id', '!=',False)]}"
-                            />
-                </header>
                 <sheet>
                     <field name="image" widget="image" class="oe_left oe_avatar" />
                     <div class="oe_title">
@@ -36,36 +29,42 @@
                             <table>
                                 <tr>
                                     <td style="padding-right:10px;"><field name="name" required="1" placeholder="First Name" /></td>
+                                     <td style="padding-right:10px;"><field name="middle_name" required="1" placeholder="Middle Name"/></td>
                                     <td style="padding-right:10px;"><field name="last_name" required="1" placeholder="Last Name"/></td>
                                 </tr>
                             </table>
                         </h1>
                     </div>
                     <notebook>
-                        <page string="teacher Details">
+                        <page string="Teacher Details">
                             <group>
-                                <group>
-                                    <field name="father_name"/>
-                                    <field name="mother_name"/>
-                                    <field name="guardian_name"/>
-
-                                </group>
                                 <group>
                                     <field name="gender"/>
                                     <field name="date_of_birth"/>
+                                    <field name="position"/>
+                                </group>
+                                <group>
+                                    <field name="nationality"/>
+                                    <field name="tsc_no"/>
+                                    <field name="county"  placeholder="Type county name"/>
+                                    <field name="active"/>
                                 </group>
                             </group>
                         </page>
                         <page string="Contact Details">
                             <group>
                                 <group>
-                                    <field name="email"/>
-                                    <field name="employee_id" readonly="1"/>
+                                    <field name="email" required="1"/>
+                                    <field name="phone" required="1"/>
                                 </group>
-                                <group>
-                                    <field name="phone"/>
-                                    <field name="mobile"/>
-                                </group>
+                            </group>
+                            <separator string="Contact Person"/>
+                            <group>
+                               <group>
+                                  <field name="contact_person"/>
+                                  <field name="contact_phone"/>
+                                  <field name="contact_email"/>
+                               </group>
                             </group>
                         </page>
                         <page string="Subjects">

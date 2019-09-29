@@ -81,15 +81,14 @@
                         <page string="Guardian Information">
                             <group>
                                 <group>
+                                    <field name="guardian_name"/>
                                     <field name="guardian_relation"/>
+                                   
                                 </group>
                                 <group>
                                      <field name="email" required="1"/>
                                     <field name="mobile" required="1"/>
                                 </group>
-                            </group>
-                            <group>
-                                <separator string="Address"/>
                             </group>
                         </page>
                     </notebook>

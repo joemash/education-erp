@@ -43,7 +43,7 @@ class StudentResult(models.Model):
             for subjects in results.subject_line:
                 total_mark_scored += subjects.mark_scored
             results.total_mark_scored = total_mark_scored
-           
+    
 
 class StudentResultLines(models.Model):
     _name = 'education.student.result.lines'
@@ -61,6 +61,25 @@ class StudentResultLines(models.Model):
         string='Marks Scored',
         required=True
     )
+    grade = fields.Selection(
+          [
+         ('A', 'A'),
+         ('A-', 'A-'),
+         ('B+', 'B+'),
+         ('B', 'B'),
+         ('B-', 'B-'),
+         ('C+', 'C+'),
+         ('C', 'C'),
+         ('C-', 'C-'),
+         ('D+', 'D+'),
+         ('D', 'D'),
+         ('D-', 'D-'),
+         ('E', 'E'),
+        ],
+        string='Grade',
+        required=True
+    )
+    comments = fields.Text(string='Comments')
 
 
     @api.onchange('mark_scored')

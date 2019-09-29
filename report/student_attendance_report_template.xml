@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
   <data>
-     <template id="student_result_report">
+     <template id="student_attendance_report">
        <t t-call="web.html_container"> 
          <t t-foreach="docs" t-as="o">
            <t t-call="web.external_layout">
@@ -9,8 +9,6 @@
                 <div class="oe_structure" />
                     <div id="informations" class="row mt32 mb32">
                       <div  class="col-3 bm-2">
-                         <strong>Student:</strong>
-                         <p t-field="o.student" class="m-0"/>
                        </div>
                         <div  class="col-3 bm-2">
                          <strong>Class:</strong>
@@ -28,24 +26,19 @@
                     <table class="table table-sm o_main_table">
                         <thead>
                             <tr>
-                                <th><strong>SUBJECT</strong></th>
-                                <th class="text-center"><strong>MARKS</strong></th>
+                                <th><strong>STUDENT</strong></th>
+                                <th class="text-center"><strong>STATUS</strong></th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr t-foreach="o.subject_line" t-as="line">
+                            <tr t-foreach="o.attendance_id" t-as="line">
                                 <td>
-                                    <span t-field="line.subject"/>
+                                    <span t-field="line.student"/>
                                 </td>
                                 <td class="text-center">
-                                    <span t-field="line.mark_scored"/>
+                                    <span t-field="line.status"/>
                                 </td>
-                                <td class="text-center">
-                                    <span t-field="line.grade"/>
-                                </td>
-                                <td class="text-center">
-                                    <span t-field="line.comments"/>
-                                </td>
+              
                             </tr>
                         </tbody>
                     </table>

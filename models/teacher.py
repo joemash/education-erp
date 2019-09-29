@@ -55,15 +55,31 @@ class EducationTeacher(models.Model):
     name = fields.Char(string='Name', required=True, help="Enter the first name")
     faculty_id = fields.Char(string="ID", readonly=True)
     last_name = fields.Char(string='Last Name', help="Enter the last name")
+    middle_name = fields.Char(string='Middle Name', help="Enter the middle name")
     image = fields.Binary(string="Image")
     email = fields.Char(string="Email", help="Enter the Email for contact purpose")
     phone = fields.Char(string="Phone", help="Enter the Phone for contact purpose")
-    mobile = fields.Char(string="Mobile", help="Enter the Mobile for contact purpose")
     date_of_birth = fields.Date(string="Date Of birth", help="Enter the DOB")
-    guardian_name = fields.Char(string="Guardian", help="Your guardian is ")
-    father_name = fields.Char(string="Father", help="Your Father name is ")
-    mother_name = fields.Char(string="Mother", help="Your Mother name is ")
+    contact_person = fields.Char(string="Full Name", help="Your contact person")
+    contact_email = fields.Char(string="Email", help="Enter the Email for contact purpose")
+    contact_phone = fields.Char(string="Phone", help="Enter the Phone for contact purpose")
+    tsc_no = fields.Char(string="Tsc Number", help="Teacher service number")
     subject_lines = fields.Many2many('education.subject', string='Subject Lines')
     employee_id = fields.Many2one('hr.employee', string="Related Employee")
     gender = fields.Selection([('male', 'Male'), ('female', 'Female'), ('other', 'Other')],
                               string='Gender', required=True, default='male', track_visibility='onchange')
+    nationality = fields.Many2one('res.country', string='Nationality', ondelete='restrict')
+    active = fields.Boolean(default=True, string="Active")
+    county = fields.Char(string="County")
+    position = fields.Selection([
+                        ('hod', 'Head of Department'),
+                        ('teacher', 'Teacher'),
+                        ('headmaster', 'Head Master'),
+                        ('deputy headmaster', 'Deputy Head Master'),
+                        ('principal', 'Principal'),
+                        ('deputy principal', 'Deputy Principal'),
+                        ])
+
+    _sql_constraints = [
+        ('id', 'unique(id)', "Teacher already exists!"),
+    ]

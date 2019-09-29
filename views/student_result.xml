@@ -33,11 +33,15 @@
 						 <tree editable="bottom">
 							<field name="subject"/>
                             <field name="mark_scored"/>
+                            <field name="grade"/>
+                            <field name="comments"/>
 						 </tree>
                          <form>
 							<group>
 							  <field name="subject"/>
                               <field name="mark_scored"/>
+                              <field name="grade"/>
+                              <field name="comments"/>
 							</group>
 					 	 </form>
 					   </field>

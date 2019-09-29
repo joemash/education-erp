@@ -37,3 +37,4 @@ class StudentTest(TransactionCase):
             'school_id': self.school.id,
             'nationality': 'Kenya'
         })
+        import pdb;pdb.set_trace()
